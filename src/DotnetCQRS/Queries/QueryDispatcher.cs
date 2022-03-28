@@ -8,9 +8,39 @@ namespace DotnetCQRS.Queries
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        Task<Result<TResult>> IQueryDispatcher.Run<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
+        private readonly IServiceProvider _services;
+
+        public QueryDispatcher(IServiceProvider services)
         {
-            throw new NotImplementedException();
+            _services = services;
+        }
+
+        public Task<Result<TResult>> Run<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
+            where TQuery : class, IQuery<TResult>
+        {
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+            
+            var handler = GetHandler<TQuery, TResult>();
+            if (handler == null)
+            {
+                throw new HandlerNotFoundException(typeof(TQuery));
+            }
+
+            return handler.HandleAsync(query, cancellationToken);
+        }
+        
+        private IQueryHandler<TQuery, TResult> GetHandler<TQuery, TResult>()
+            where TQuery : class, IQuery<TResult>
+        {
+            Type[] args = {typeof(TQuery), typeof(TResult)};
+            
+            var handlerType = typeof(IQueryHandler<,>)
+                .MakeGenericType(args);
+
+            return (IQueryHandler<TQuery, TResult>) _services.GetService(handlerType);
         }
     }
 }

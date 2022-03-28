@@ -8,16 +8,34 @@ namespace DotnetCQRS.Commands
 {
     public class CommandDispatcher : ICommandDispatcher
     {
-        private IServiceProvider services;
+        private readonly IServiceProvider _services;
 
         public CommandDispatcher(IServiceProvider services)
         {
-            this.services = services;
+            _services = services;
         }
 
-        Task<Result> ICommandDispatcher.Run<T>(T command, CancellationToken cancellationToken)
+        public Task<Result> Run<T>(T command, CancellationToken cancellationToken)
+            where T : class, ICommand
         {
-            var handler = services.GetService();
+            var handler = GetHandler<T>();
+            if (handler == null)
+            {
+                throw new HandlerNotFoundException(typeof(T));
+            }
+
+            return handler.HandleAsync(command, cancellationToken);
+        }
+
+        private ICommandHandler<T> GetHandler<T>()
+            where T : class, ICommand
+        {
+            Type[] args = {typeof(T)};
+            
+            var handlerType = typeof(ICommandHandler<>)
+                .MakeGenericType(args);
+
+            return (ICommandHandler<T>) _services.GetService(handlerType);
         }
     }
 }

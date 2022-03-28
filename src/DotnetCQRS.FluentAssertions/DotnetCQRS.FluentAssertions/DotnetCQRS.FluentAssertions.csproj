@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyName>DotnetCQRS.Extensions.FluentAssertions</AssemblyName>
+    <RootNamespace>DotnetCQRS.Extensions.FluentAssertions</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DotnetCQRS\DotnetCQRS.csproj" />
+  </ItemGroup>
+
+</Project>

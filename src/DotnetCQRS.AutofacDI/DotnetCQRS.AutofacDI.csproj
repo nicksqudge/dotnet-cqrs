@@ -11,4 +11,8 @@
     <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+  </ItemGroup>
+
 </Project>
