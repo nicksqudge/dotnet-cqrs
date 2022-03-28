@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32317.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{59EF4380-1AB2-4271-84A0-B6FC960E9274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCQRS", "src\DotnetCQRS\DotnetCQRS.csproj", "{9260719E-7C1F-41FE-8F54-FFCB80F304F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS", "src\DotnetCQRS\DotnetCQRS.csproj", "{9260719E-7C1F-41FE-8F54-FFCB80F304F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCQRS.Tests", "tests\DotnetCQRS.Tests\DotnetCQRS.Tests.csproj", "{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS.Tests", "tests\DotnetCQRS.Tests\DotnetCQRS.Tests.csproj", "{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0250EAF3-5DAB-40A4-B48E-EBF492E986C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCQRS.MicrosoftDI", "src\DotnetCQRS.MicrosoftDI\DotnetCQRS.MicrosoftDI.csproj", "{87DFF101-7A58-4395-80D8-D5285D1D6E43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCQRS.AutofacDI", "src\DotnetCQRS.AutofacDI\DotnetCQRS.AutofacDI.csproj", "{9577B488-F77E-48AA-996D-00C5EB5EBF17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +31,14 @@ Global
 		{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DFF101-7A58-4395-80D8-D5285D1D6E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DFF101-7A58-4395-80D8-D5285D1D6E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DFF101-7A58-4395-80D8-D5285D1D6E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DFF101-7A58-4395-80D8-D5285D1D6E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9577B488-F77E-48AA-996D-00C5EB5EBF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9577B488-F77E-48AA-996D-00C5EB5EBF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9577B488-F77E-48AA-996D-00C5EB5EBF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9577B488-F77E-48AA-996D-00C5EB5EBF17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +46,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9260719E-7C1F-41FE-8F54-FFCB80F304F5} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
 		{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA} = {59EF4380-1AB2-4271-84A0-B6FC960E9274}
+		{87DFF101-7A58-4395-80D8-D5285D1D6E43} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
+		{9577B488-F77E-48AA-996D-00C5EB5EBF17} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73E0FB9F-4B91-427B-89D0-99D8438BC11F}

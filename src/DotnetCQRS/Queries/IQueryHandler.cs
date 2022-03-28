@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace DotnetCQRS
+namespace DotnetCQRS.Queries
 {
-    public interface IQuery<TResult>
-    { }
-
     public interface IQueryHandler<TQuery, TResult>
         where TQuery : IQuery<TResult>
     {
