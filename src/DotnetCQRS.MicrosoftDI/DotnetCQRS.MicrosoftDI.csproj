@@ -5,7 +5,19 @@
     <Nullable>enable</Nullable>
     <AssemblyName>DotnetCQRS.Extensions.Microsoft.DependencyInjection</AssemblyName>
     <RootNamespace>DotnetCQRS.Extensions.Microsoft.DependencyInjection</RootNamespace>
+    <Company>nick.squdge</Company>
+    <Description>Dependency injection for .Net CQRS for Microsoft DependencyInjection</Description>
+    <Copyright>Copyright ©2022 Nick Browne</Copyright>
+    <PackageProjectUrl>https://github.com/nicksqudge/dotnet-cqrs</PackageProjectUrl>
+    <PackageTags>dotnet cqrs command query dependency injection di</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+
+	<ItemGroup>
+		<None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj" />

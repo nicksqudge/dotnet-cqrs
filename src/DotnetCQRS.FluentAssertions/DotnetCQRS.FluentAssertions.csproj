@@ -5,7 +5,19 @@
     <Nullable>enable</Nullable>
     <AssemblyName>DotnetCQRS.Extensions.FluentAssertions</AssemblyName>
     <RootNamespace>DotnetCQRS.Extensions.FluentAssertions</RootNamespace>
+    <Company>nick.squdge</Company>
+    <Description>FluentAssertions for .Net CQRS</Description>
+    <Copyright>Copyright ©2022 Nick Browne</Copyright>
+    <PackageProjectUrl>https://github.com/nicksqudge/dotnet-cqrs</PackageProjectUrl>
+    <PackageTags>dotnet cqrs command query fluentassertions</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+
+	<ItemGroup>
+		<None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.5.1" />
