@@ -14,7 +14,7 @@ namespace DotnetCQRS.Extensions.Microsoft.DependencyInjection
             return services
                 .AddDefaultCommandDispatcher()
                 .AddDefaultQueryDispatcher()
-                .AddHandlerFactory<HandlerFactory>();
+                .AddHandlerFactory<MicrosoftHandlerFactory>();
         }
 
         public static IServiceCollection AddDefaultCommandDispatcher(this IServiceCollection services)

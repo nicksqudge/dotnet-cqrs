@@ -1,16 +1,17 @@
-﻿using DotnetCQRS.Commands;
+﻿using Autofac;
+using DotnetCQRS.Commands;
 using DotnetCQRS.Queries;
 using System;
 
-namespace DotnetCQRS.Extensions.Microsoft.DependencyInjection
+namespace DotnetCQRS.Extensions.Autofac.DependencyInjection
 {
-    internal class HandlerFactory : IHandlerFactory
+    internal class AutofacHandlerFactory : IHandlerFactory
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly ILifetimeScope _lifetimeScope;
 
-        public HandlerFactory(IServiceProvider serviceProvider)
+        public AutofacHandlerFactory(ILifetimeScope lifetimeScope)
         {
-            _serviceProvider = serviceProvider;
+            _lifetimeScope = lifetimeScope;
         }
 
         public ICommandHandler<TCommand> GetCommandHandler<TCommand>()
@@ -21,7 +22,7 @@ namespace DotnetCQRS.Extensions.Microsoft.DependencyInjection
             var handlerType = typeof(ICommandHandler<>)
                 .MakeGenericType(args);
 
-            return (ICommandHandler<TCommand>)_serviceProvider.GetService(handlerType);
+            return (ICommandHandler<TCommand>)_lifetimeScope.Resolve(handlerType);
         }
 
         public IQueryHandler<TQuery, TResult> GetQueryHandler<TQuery, TResult>()
@@ -32,7 +33,7 @@ namespace DotnetCQRS.Extensions.Microsoft.DependencyInjection
             var handlerType = typeof(IQueryHandler<,>)
                 .MakeGenericType(args);
 
-            return (IQueryHandler<TQuery, TResult>)_serviceProvider.GetService(handlerType);
+            return (IQueryHandler<TQuery, TResult>)_lifetimeScope.Resolve(handlerType);
         }
     }
 }

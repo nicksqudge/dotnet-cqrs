@@ -12,7 +12,7 @@ namespace DotnetCQRS.Tests
     public class QueryDispatcherTests
     {
         [Fact]
-        public async Task GivenAQuery_WhenRequestingIt_ThenItShouldReturnTheResult()
+        public async Task GivenAQuery_WhenRequestingItWithMicrosoftDependencyInjection_ThenItShouldReturnTheResult()
         {
             var services = new ServiceCollection()
                 .AddDotnetCQRS()
@@ -29,7 +29,7 @@ namespace DotnetCQRS.Tests
         }
 
         [Fact]
-        public async Task GivenAQueryLoadedFromAssemblies_WhenRequestingIt_ThenFindTheHandler()
+        public async Task GivenAQueryLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
                 .AddDotnetCQRS()

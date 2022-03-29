@@ -6,13 +6,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using DotnetCQRS.Tests.TestHelpers;
 using Xunit;
+using Autofac;
+using DotnetCQRS.Extensions.Autofac.DependencyInjection;
 
 namespace DotnetCQRS.Tests
 {
     public class CommandDispatcherTests
     {
         [Fact]
-        public async Task GivenACommand_WhenRequestingIt_ThenFindTheHandler()
+        public async Task GivenACommand_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
                 .AddDotnetCQRS()
@@ -26,7 +28,21 @@ namespace DotnetCQRS.Tests
         }
 
         [Fact]
-        public async Task GivenACommandLoadedFromAssemblies_WhenRequestingIt_ThenFindTheHandler()
+        public async Task GivenACommand_WhenRequestingItWithAutofac_ThenFindTheHandler()
+        {
+            var container = new ContainerBuilder()
+                .AddDotnetCQRS()
+                .AddCommandHandler<CommandTest, CommandTestHandler>()
+                .Build();
+
+            var commandDispatcher = container.Resolve<ICommandDispatcher>();
+            var result = await commandDispatcher.Run(new CommandTest(), CancellationToken.None);
+            result.Should().BeFailure()
+                .And.HaveErrorCode("CommandTestRan");
+        }
+
+        [Fact]
+        public async Task GivenACommandLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
                 .AddDotnetCQRS()
@@ -34,6 +50,19 @@ namespace DotnetCQRS.Tests
                 .BuildServiceProvider();
             
             var commandDispatcher = services.GetRequiredService<ICommandDispatcher>();
+            var result = await commandDispatcher.Run(new ExampleCommand(), CancellationToken.None);
+            result.Should().BeSuccess();
+        }
+
+        [Fact]
+        public async Task GivenACommandLoadedFromAssemblies_WhenRequestingItWithAutofac_ThenFindTheHandler()
+        {
+            var container = new ContainerBuilder()
+                .AddDotnetCQRS()
+                .AddCommandHandlersFromAssembly(typeof(ExampleCommand).Assembly)
+                .Build();
+
+            var commandDispatcher = container.Resolve<ICommandDispatcher>();
             var result = await commandDispatcher.Run(new ExampleCommand(), CancellationToken.None);
             result.Should().BeSuccess();
         }
