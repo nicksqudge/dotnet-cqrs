@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DotnetCQRS.Extensions.FluentAssertions;
 using DotnetCQRS.Extensions.Microsoft.DependencyInjection;
 using DotnetCQRS.Queries;
+using DotnetCQRS.Tests.TestHelpers;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -14,10 +15,11 @@ namespace DotnetCQRS.Tests
         public async Task GivenAQuery_WhenRequestingIt_ThenItShouldReturnTheResult()
         {
             var services = new ServiceCollection()
+                .AddDotnetCQRS()
                 .AddQueryHandler<QueryTest, QueryTestResult, QueryTestHandler>()
                 .BuildServiceProvider();
 
-            var dispatcher = new QueryDispatcher(services);
+            var dispatcher = services.GetRequiredService<IQueryDispatcher>();
             var result = await dispatcher.Run<QueryTest, QueryTestResult>(new QueryTest(), CancellationToken.None);
             result.Should().BeSuccess()
                 .And.BeEquivalentTo(new QueryTestResult()
@@ -25,7 +27,20 @@ namespace DotnetCQRS.Tests
                     Output = "QueryRan"
                 });
         }
-        
+
+        [Fact]
+        public async Task GivenAQueryLoadedFromAssemblies_WhenRequestingIt_ThenFindTheHandler()
+        {
+            var services = new ServiceCollection()
+                .AddDotnetCQRS()
+                .AddQueryHandlersFromAssembly(typeof(ExampleQuery).Assembly)
+                .BuildServiceProvider();
+
+            var queryDispatcher = services.GetRequiredService<IQueryDispatcher>();
+            var result = await queryDispatcher.Run<ExampleQuery,ExampleQueryResult>(new ExampleQuery(), CancellationToken.None);
+            result.Should().BeSuccess();
+        }
+
         public class QueryTest : IQuery<QueryTestResult>
         {
             

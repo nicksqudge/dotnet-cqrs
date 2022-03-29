@@ -8,11 +8,11 @@ namespace DotnetCQRS.Queries
 {
     public class QueryDispatcher : IQueryDispatcher
     {
-        private readonly IServiceProvider _services;
+        private readonly IHandlerFactory _handlerFactory;
 
-        public QueryDispatcher(IServiceProvider services)
+        public QueryDispatcher(IHandlerFactory handlerFactory)
         {
-            _services = services;
+            _handlerFactory = handlerFactory;
         }
 
         public Task<Result<TResult>> Run<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
@@ -22,25 +22,14 @@ namespace DotnetCQRS.Queries
             {
                 throw new ArgumentNullException(nameof(query));
             }
-            
-            var handler = GetHandler<TQuery, TResult>();
+
+            var handler = _handlerFactory.GetQueryHandler<TQuery, TResult>();
             if (handler == null)
             {
                 throw new HandlerNotFoundException(typeof(TQuery));
             }
 
             return handler.HandleAsync(query, cancellationToken);
-        }
-        
-        private IQueryHandler<TQuery, TResult> GetHandler<TQuery, TResult>()
-            where TQuery : class, IQuery<TResult>
-        {
-            Type[] args = {typeof(TQuery), typeof(TResult)};
-            
-            var handlerType = typeof(IQueryHandler<,>)
-                .MakeGenericType(args);
-
-            return (IQueryHandler<TQuery, TResult>) _services.GetService(handlerType);
         }
     }
 }
