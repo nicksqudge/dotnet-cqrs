@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DotnetCQRS\DotnetCQRS.csproj" />
+    <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj" />
   </ItemGroup>
 
 </Project>

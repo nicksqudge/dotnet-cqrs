@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\DotnetCQRS.AutofacDI\DotnetCQRS.AutofacDI.csproj" />
     <ProjectReference Include="..\..\src\DotnetCQRS.FluentAssertions\DotnetCQRS.FluentAssertions.csproj" />
-    <ProjectReference Include="..\..\src\DotnetCQRS.FluentAssertions\DotnetCQRS.FluentAssertions\DotnetCQRS.FluentAssertions.csproj" />
     <ProjectReference Include="..\..\src\DotnetCQRS.MicrosoftDI\DotnetCQRS.MicrosoftDI.csproj" />
     <ProjectReference Include="..\..\src\DotnetCQRS\DotnetCQRS.csproj" />
   </ItemGroup>
