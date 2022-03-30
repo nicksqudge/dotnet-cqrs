@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\DotnetCQRS.MicrosoftDI\DotnetCQRS.MicrosoftDI.csproj" />
     <ProjectReference Include="..\..\src\DotnetCQRS\DotnetCQRS.csproj" />
   </ItemGroup>

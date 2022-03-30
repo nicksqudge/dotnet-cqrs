@@ -104,6 +104,8 @@ CQRS is known as Command and Query Responsibility Segregation, it is a pattern f
 
 Unlike the above implementation, this one is used for doing One Command or Query Handler per file rather than being able to do many in a single file.
 
+For more information check out the [basics](docs/Basics.md) or the [ApiExample](examples/ApiExample/Readme.md)
+
 ### What about Dependency Injection
 
 Check the /src folder to find two Dependency Injection implementations for the Microsoft.Extensions.DependencyInjection and Autofac libraries. If you want other implementations let me know through the Issues tab in Github.
