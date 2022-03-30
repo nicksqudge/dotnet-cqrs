@@ -1,4 +1,4 @@
-﻿namespace ApiExample.Database
+﻿namespace ApiExample.DataAccessLayer
 {
     public class ProductEntity
     {

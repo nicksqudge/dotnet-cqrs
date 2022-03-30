@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="CQRS\Queries\" />
+    <Folder Include="ApplicationLayer\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

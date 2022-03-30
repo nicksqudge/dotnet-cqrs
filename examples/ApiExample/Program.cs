@@ -1,5 +1,5 @@
-using ApiExample.CQRS.Commands.SaveProduct;
-using ApiExample.Database;
+using ApiExample.ApplicationLayer.Commands.SaveProduct;
+using ApiExample.DataAccessLayer;
 using DotnetCQRS.Extensions.Microsoft.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 

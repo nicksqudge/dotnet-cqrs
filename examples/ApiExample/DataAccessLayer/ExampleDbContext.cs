@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ApiExample.Database
+namespace ApiExample.DataAccessLayer
 {
     public class ExampleDbContext : DbContext
     {

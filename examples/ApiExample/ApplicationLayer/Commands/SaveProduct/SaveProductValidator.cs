@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ApiExample.CQRS.Commands.SaveProduct
+namespace ApiExample.ApplicationLayer.Commands.SaveProduct
 {
     public class SaveProductValidator : AbstractValidator<SaveProductCommand>
     {

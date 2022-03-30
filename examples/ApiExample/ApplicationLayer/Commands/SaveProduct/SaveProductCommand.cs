@@ -1,6 +1,6 @@
 ﻿using DotnetCQRS.Commands;
 
-namespace ApiExample.CQRS.Commands.SaveProduct
+namespace ApiExample.ApplicationLayer.Commands.SaveProduct
 {
     public class SaveProductCommand : ICommand
     {
@@ -8,5 +8,7 @@ namespace ApiExample.CQRS.Commands.SaveProduct
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+
+        public bool HasProductId() => ProductId != 0;
     }
 }

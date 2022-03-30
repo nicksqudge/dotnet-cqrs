@@ -1,10 +1,10 @@
-﻿using ApiExample.Database;
+﻿using ApiExample.DataAccessLayer;
 using DotnetCQRS;
 using DotnetCQRS.Commands;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiExample.CQRS.Commands.SaveProduct
+namespace ApiExample.ApplicationLayer.Commands.SaveProduct
 {
     public class SaveProductHandler : ICommandHandler<SaveProductCommand>
     {
@@ -21,17 +21,25 @@ namespace ApiExample.CQRS.Commands.SaveProduct
         {
             await validator.ValidateAndThrowAsync(command, cancellationToken);
 
-            if (await DoesProductExist(command, cancellationToken))
+            var productExists = await DoesProductExist(command, cancellationToken);
+
+            if (command.HasProductId())
             {
-                await UpdateProduct(command, cancellationToken);
-                return Result.Success();
+                if (productExists)
+                    await UpdateProduct(command, cancellationToken);
+                else
+                    return Result.Failure(ErrorCodes.NotFound);
+            }
+            else
+            {
+                CreateNewProduct(command, cancellationToken);
             }
 
-            await CreateNewProduct(command, cancellationToken);
+            await context.SaveChangesAsync(cancellationToken);
             return Result.Success();
         }
 
-        private async Task CreateNewProduct(SaveProductCommand command, CancellationToken cancellationToken)
+        private void CreateNewProduct(SaveProductCommand command, CancellationToken cancellationToken)
         {
             var entity = new ProductEntity()
             {
@@ -42,7 +50,6 @@ namespace ApiExample.CQRS.Commands.SaveProduct
             };
             
             context.Products.Add(entity);
-            await context.SaveChangesAsync(cancellationToken);
         }
 
         private async Task UpdateProduct(SaveProductCommand command, CancellationToken cancellationToken)
@@ -53,8 +60,6 @@ namespace ApiExample.CQRS.Commands.SaveProduct
             entity.Description = command.Description;
             entity.Price = command.Price;
             entity.Name = command.Name;
-
-            await context.SaveChangesAsync(cancellationToken);
         }
 
         private async Task<bool> DoesProductExist(SaveProductCommand command, CancellationToken cancellationToken)
