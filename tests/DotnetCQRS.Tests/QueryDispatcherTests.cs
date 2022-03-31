@@ -15,35 +15,36 @@ namespace DotnetCQRS.Tests
         public async Task GivenAQuery_WhenRequestingItWithMicrosoftDependencyInjection_ThenItShouldReturnTheResult()
         {
             var services = new ServiceCollection()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddQueryHandler<QueryTest, QueryTestResult, QueryTestHandler>()
                 .BuildServiceProvider();
 
             var dispatcher = services.GetRequiredService<IQueryDispatcher>();
             var result = await dispatcher.Run<QueryTest, QueryTestResult>(new QueryTest(), CancellationToken.None);
             result.Should().BeSuccess()
-                .And.BeEquivalentTo(new QueryTestResult()
+                .And.BeEquivalentTo(new QueryTestResult
                 {
                     Output = "QueryRan"
                 });
         }
 
         [Fact]
-        public async Task GivenAQueryLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
+        public async Task
+            GivenAQueryLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddQueryHandlersFromAssembly(typeof(ExampleQuery).Assembly)
                 .BuildServiceProvider();
 
             var queryDispatcher = services.GetRequiredService<IQueryDispatcher>();
-            var result = await queryDispatcher.Run<ExampleQuery,ExampleQueryResult>(new ExampleQuery(), CancellationToken.None);
+            var result =
+                await queryDispatcher.Run<ExampleQuery, ExampleQueryResult>(new ExampleQuery(), CancellationToken.None);
             result.Should().BeSuccess();
         }
 
         public class QueryTest : IQuery<QueryTestResult>
         {
-            
         }
 
         public class QueryTestResult
@@ -54,8 +55,8 @@ namespace DotnetCQRS.Tests
         public class QueryTestHandler : IQueryHandler<QueryTest, QueryTestResult>
         {
             public async Task<Result<QueryTestResult>> HandleAsync(QueryTest query, CancellationToken cancellationToken)
-            { 
-                return Result.Success<QueryTestResult>(new QueryTestResult()
+            {
+                return Result.Success(new QueryTestResult
                 {
                     Output = "QueryRan"
                 });

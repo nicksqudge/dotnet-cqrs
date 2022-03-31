@@ -14,7 +14,8 @@ or using the .Net core command line
 
 ## Usage
 
-To define a Command or Query just create a class and inherit from either ICommand or IQuery. For Queries, you will need to define a return result.
+To define a Command or Query just create a class and inherit from either ICommand or IQuery. For Queries, you will need
+to define a return result.
 
 ```csharp
 
@@ -63,9 +64,12 @@ public class FetchUsersHandler : IQueryHandler<FetchUsersQuery, FetchUsersResult
 }
 ```
 
-You will then need to register the Query and Command Handlers with some kind of dependency injection so that you can call the dispatchers. The project includes some DI setup for both Microsoft.Extensions.DependencyInjection and Autofac. (documentation coming soon).
+You will then need to register the Query and Command Handlers with some kind of dependency injection so that you can
+call the dispatchers. The project includes some DI setup for both Microsoft.Extensions.DependencyInjection and
+Autofac. (documentation coming soon).
 
-Once registered you will need to instantiate the IQueryDispatcher or ICommandDispatcher to run the above commands and queries.
+Once registered you will need to instantiate the IQueryDispatcher or ICommandDispatcher to run the above commands and
+queries.
 
 ```csharp
 // For query
@@ -100,12 +104,16 @@ else
 
 ### What is CQRS?
 
-CQRS is known as Command and Query Responsibility Segregation, it is a pattern for structuring applications. For more information on the pattern check [the Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+CQRS is known as Command and Query Responsibility Segregation, it is a pattern for structuring applications. For more
+information on the pattern
+check [the Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 
-Unlike the above implementation, this one is used for doing One Command or Query Handler per file rather than being able to do many in a single file.
+Unlike the above implementation, this one is used for doing One Command or Query Handler per file rather than being able
+to do many in a single file.
 
 For more information check out the [basics](docs/Basics.md) or the [ApiExample](examples/ApiExample/Readme.md)
 
 ### What about Dependency Injection
 
-Check the /src folder to find two Dependency Injection implementations for the Microsoft.Extensions.DependencyInjection and Autofac libraries. If you want other implementations let me know through the Issues tab in Github.
+Check the /src folder to find two Dependency Injection implementations for the Microsoft.Extensions.DependencyInjection
+and Autofac libraries. If you want other implementations let me know through the Issues tab in Github.

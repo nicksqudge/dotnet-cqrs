@@ -6,7 +6,6 @@ namespace DotnetCQRS
     {
         public HandlerNotFoundException(Type expectedTarget) : base($"Could not find handler for {expectedTarget.Name}")
         {
-            
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿namespace ApiExample.DataAccessLayer
+﻿namespace ApiExample.DataAccessLayer;
+
+public class ProductEntity
 {
-    public class ProductEntity
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double Price { get; set; }
-        public bool IsActive { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public double Price { get; set; }
+    public bool IsActive { get; set; }
 }

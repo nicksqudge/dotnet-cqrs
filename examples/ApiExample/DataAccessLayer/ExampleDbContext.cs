@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ApiExample.DataAccessLayer
+namespace ApiExample.DataAccessLayer;
+
+public class ExampleDbContext : DbContext
 {
-    public class ExampleDbContext : DbContext
+    public ExampleDbContext(DbContextOptions options) : base(options)
     {
-        public DbSet<ProductEntity> Products { get; set; }
-
-        public ExampleDbContext(DbContextOptions options) : base(options)
-        {
-
-        }
     }
+
+    public DbSet<ProductEntity> Products { get; set; }
 }

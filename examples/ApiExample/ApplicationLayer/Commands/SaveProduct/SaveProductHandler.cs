@@ -4,72 +4,71 @@ using DotnetCQRS.Commands;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiExample.ApplicationLayer.Commands.SaveProduct
+namespace ApiExample.ApplicationLayer.Commands.SaveProduct;
+
+public class SaveProductHandler : ICommandHandler<SaveProductCommand>
 {
-    public class SaveProductHandler : ICommandHandler<SaveProductCommand>
+    private readonly ExampleDbContext _context;
+    private readonly IValidator<SaveProductCommand> _validator;
+
+    public SaveProductHandler(IValidator<SaveProductCommand> validator, ExampleDbContext context)
     {
-        private readonly IValidator<SaveProductCommand> validator;
-        private readonly ExampleDbContext context;
+        this._validator = validator;
+        this._context = context;
+    }
 
-        public SaveProductHandler(IValidator<SaveProductCommand> validator, ExampleDbContext context)
+    public async Task<Result> HandleAsync(SaveProductCommand command, CancellationToken cancellationToken)
+    {
+        await _validator.ValidateAndThrowAsync(command, cancellationToken);
+
+        var productExists = await DoesProductExist(command, cancellationToken);
+
+        if (command.HasProductId())
         {
-            this.validator = validator;
-            this.context = context;
-        }
-
-        public async Task<Result> HandleAsync(SaveProductCommand command, CancellationToken cancellationToken)
-        {
-            await validator.ValidateAndThrowAsync(command, cancellationToken);
-
-            var productExists = await DoesProductExist(command, cancellationToken);
-
-            if (command.HasProductId())
-            {
-                if (productExists)
-                    await UpdateProduct(command, cancellationToken);
-                else
-                    return Result.Failure(ErrorCodes.NotFound);
-            }
+            if (productExists)
+                await UpdateProduct(command, cancellationToken);
             else
-            {
-                CreateNewProduct(command, cancellationToken);
-            }
-
-            await context.SaveChangesAsync(cancellationToken);
-            return Result.Success();
+                return Result.Failure(ErrorCodes.NotFound);
         }
-
-        private void CreateNewProduct(SaveProductCommand command, CancellationToken cancellationToken)
+        else
         {
-            var entity = new ProductEntity()
-            {
-                Description = command.Description,
-                IsActive = true,
-                Name = command.Name,
-                Price = command.Price,
-            };
-            
-            context.Products.Add(entity);
+            CreateNewProduct(command, cancellationToken);
         }
 
-        private async Task UpdateProduct(SaveProductCommand command, CancellationToken cancellationToken)
+        await _context.SaveChangesAsync(cancellationToken);
+        return Result.Success();
+    }
+
+    private void CreateNewProduct(SaveProductCommand command, CancellationToken cancellationToken)
+    {
+        var entity = new ProductEntity
         {
-            var entity = await context.Products
-                .FirstAsync(p => p.Id == command.ProductId, cancellationToken);
+            Description = command.Description,
+            IsActive = true,
+            Name = command.Name,
+            Price = command.Price
+        };
 
-            entity.Description = command.Description;
-            entity.Price = command.Price;
-            entity.Name = command.Name;
-        }
+        _context.Products.Add(entity);
+    }
 
-        private async Task<bool> DoesProductExist(SaveProductCommand command, CancellationToken cancellationToken)
-        {
-            if (command.ProductId == 0)
-                return false;
+    private async Task UpdateProduct(SaveProductCommand command, CancellationToken cancellationToken)
+    {
+        var entity = await _context.Products
+            .FirstAsync(p => p.Id == command.ProductId, cancellationToken);
 
-            return await context
-                .Products
-                .AnyAsync(p => p.Id == command.ProductId, cancellationToken);
-        }
+        entity.Description = command.Description;
+        entity.Price = command.Price;
+        entity.Name = command.Name;
+    }
+
+    private async Task<bool> DoesProductExist(SaveProductCommand command, CancellationToken cancellationToken)
+    {
+        if (command.ProductId == 0)
+            return false;
+
+        return await _context
+            .Products
+            .AnyAsync(p => p.Id == command.ProductId, cancellationToken);
     }
 }

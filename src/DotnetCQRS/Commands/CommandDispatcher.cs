@@ -16,16 +16,10 @@ namespace DotnetCQRS.Commands
         public Task<Result> Run<T>(T command, CancellationToken cancellationToken)
             where T : class, ICommand
         {
-            if (command == null)
-            {
-                throw new ArgumentNullException(nameof(command));
-            }
+            if (command == null) throw new ArgumentNullException(nameof(command));
 
             var handler = _handlerFactory.GetCommandHandler<T>();
-            if (handler == null)
-            {
-                throw new HandlerNotFoundException(typeof(T));
-            }
+            if (handler == null) throw new HandlerNotFoundException(typeof(T));
 
             return handler.HandleAsync(command, cancellationToken);
         }

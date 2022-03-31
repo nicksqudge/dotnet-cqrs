@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services
-    .AddDotnetCQRS()
+    .AddDotnetCqrs()
     .AddHandlersFromAssembly<SaveProductCommand>()
     .AddDbContext<ExampleDbContext>(options => options.UseSqlite("Data Source=CQRSExample.db"));
 

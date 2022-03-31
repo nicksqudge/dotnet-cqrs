@@ -1,14 +1,14 @@
-﻿using Autofac;
+﻿using System;
+using System.Reflection;
+using Autofac;
 using DotnetCQRS.Commands;
 using DotnetCQRS.Queries;
-using System;
-using System.Reflection;
 
 namespace DotnetCQRS.Extensions.Autofac.DependencyInjection
 {
     public static class ContainerBuilderExtensions
     {
-        public static ContainerBuilder AddDotnetCQRS(this ContainerBuilder container)
+        public static ContainerBuilder AddDotnetCqrs(this ContainerBuilder container)
         {
             return container
                 .AddDefaultCommandDispatcher()
@@ -45,18 +45,27 @@ namespace DotnetCQRS.Extensions.Autofac.DependencyInjection
         }
 
         public static ContainerBuilder AddHandlersFromAssembly<T>(this ContainerBuilder container)
-            => container.AddHandlersFromAssembly(typeof(T).Assembly);
+        {
+            return container.AddHandlersFromAssembly(typeof(T).Assembly);
+        }
 
         public static ContainerBuilder AddHandlersFromAssembly(this ContainerBuilder container, Assembly assembly)
-            => container
+        {
+            return container
                 .AddQueryHandlersFromAssembly(assembly)
                 .AddCommandHandlersFromAssembly(assembly);
+        }
 
-        public static ContainerBuilder AddCommandHandlersFromAssembly(this ContainerBuilder container, Assembly assembly)
-            => container.AddHandlersFromAssembly(assembly, typeof(ICommandHandler<>));
+        public static ContainerBuilder AddCommandHandlersFromAssembly(this ContainerBuilder container,
+            Assembly assembly)
+        {
+            return container.AddHandlersFromAssembly(assembly, typeof(ICommandHandler<>));
+        }
 
         public static ContainerBuilder AddQueryHandlersFromAssembly(this ContainerBuilder container, Assembly assembly)
-            => container.AddHandlersFromAssembly(assembly, typeof(IQueryHandler<,>));
+        {
+            return container.AddHandlersFromAssembly(assembly, typeof(IQueryHandler<,>));
+        }
 
         public static ContainerBuilder AddQueryHandler<TQuery, TResult, THandler>(this ContainerBuilder container)
             where TQuery : class, IQuery<TResult>
@@ -80,7 +89,8 @@ namespace DotnetCQRS.Extensions.Autofac.DependencyInjection
             return container;
         }
 
-        private static ContainerBuilder AddHandlersFromAssembly(this ContainerBuilder container, Assembly assembly, Type expectedHandlerType)
+        private static ContainerBuilder AddHandlersFromAssembly(this ContainerBuilder container, Assembly assembly,
+            Type expectedHandlerType)
         {
             container
                 .RegisterAssemblyTypes(assembly)

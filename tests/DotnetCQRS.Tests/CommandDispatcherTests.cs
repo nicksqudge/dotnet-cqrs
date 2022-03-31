@@ -1,13 +1,13 @@
-using DotnetCQRS.Commands;
-using DotnetCQRS.Extensions.FluentAssertions;
-using DotnetCQRS.Extensions.Microsoft.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using System.Threading;
 using System.Threading.Tasks;
-using DotnetCQRS.Tests.TestHelpers;
-using Xunit;
 using Autofac;
+using DotnetCQRS.Commands;
 using DotnetCQRS.Extensions.Autofac.DependencyInjection;
+using DotnetCQRS.Extensions.FluentAssertions;
+using DotnetCQRS.Extensions.Microsoft.DependencyInjection;
+using DotnetCQRS.Tests.TestHelpers;
+using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace DotnetCQRS.Tests
 {
@@ -17,7 +17,7 @@ namespace DotnetCQRS.Tests
         public async Task GivenACommand_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddCommandHandler<CommandTest, CommandTestHandler>()
                 .BuildServiceProvider();
 
@@ -31,7 +31,7 @@ namespace DotnetCQRS.Tests
         public async Task GivenACommand_WhenRequestingItWithAutofac_ThenFindTheHandler()
         {
             var container = new ContainerBuilder()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddCommandHandler<CommandTest, CommandTestHandler>()
                 .Build();
 
@@ -42,13 +42,14 @@ namespace DotnetCQRS.Tests
         }
 
         [Fact]
-        public async Task GivenACommandLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
+        public async Task
+            GivenACommandLoadedFromAssemblies_WhenRequestingItWithMicrosoftDependencyInjection_ThenFindTheHandler()
         {
             var services = new ServiceCollection()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddCommandHandlersFromAssembly(typeof(ExampleCommand).Assembly)
                 .BuildServiceProvider();
-            
+
             var commandDispatcher = services.GetRequiredService<ICommandDispatcher>();
             var result = await commandDispatcher.Run(new ExampleCommand(), CancellationToken.None);
             result.Should().BeSuccess();
@@ -58,7 +59,7 @@ namespace DotnetCQRS.Tests
         public async Task GivenACommandLoadedFromAssemblies_WhenRequestingItWithAutofac_ThenFindTheHandler()
         {
             var container = new ContainerBuilder()
-                .AddDotnetCQRS()
+                .AddDotnetCqrs()
                 .AddCommandHandlersFromAssembly(typeof(ExampleCommand).Assembly)
                 .Build();
 
@@ -69,7 +70,6 @@ namespace DotnetCQRS.Tests
 
         public class CommandTest : ICommand
         {
-            
         }
 
         public class CommandTestHandler : ICommandHandler<CommandTest>

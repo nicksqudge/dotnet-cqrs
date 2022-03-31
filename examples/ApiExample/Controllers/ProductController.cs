@@ -1,45 +1,68 @@
 ﻿using ApiExample.ApplicationLayer.Commands.SaveProduct;
+using ApiExample.ApplicationLayer.Queries.ProductList;
 using DotnetCQRS;
 using DotnetCQRS.Commands;
+using DotnetCQRS.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiExample.Controllers
+namespace ApiExample.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProductController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : ControllerBase
+    private readonly ICommandDispatcher _commandDispatcher;
+    private readonly IQueryDispatcher _queryDispatcher;
+
+    public ProductController(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
     {
-        private readonly ICommandDispatcher commandDispatcher;
+        _commandDispatcher = commandDispatcher;
+        _queryDispatcher = queryDispatcher;
+    }
 
-        public ProductController(ICommandDispatcher commandDispatcher)
-        {
-            this.commandDispatcher = commandDispatcher;
-        }
+    [HttpGet]
+    public async Task<IActionResult> ProductList([FromQuery] ProductListQuery query)
+    {
+        var result = await _queryDispatcher
+            .Run<ProductListQuery, ProductListResult>(query, HttpContext.RequestAborted);
 
-        [HttpPost]
-        public async Task<IActionResult> CreateNewProduct([FromBody] SaveProductCommand command)
-        {
-            var result = await commandDispatcher.Run(command, HttpContext.RequestAborted);
-            return ResultToStatusCode(result);
-        }
+        return ResultToStatusCode(result);
+    }
 
-        [HttpPut("{productId}")]
-        public async Task<IActionResult> UpdateProduct(int productId, [FromBody] SaveProductCommand command)
-        {
-            command.ProductId = productId;
-            var result = await commandDispatcher.Run(command, HttpContext.RequestAborted);
-            return ResultToStatusCode(result);
-        }
+    [HttpPost]
+    public async Task<IActionResult> CreateNewProduct([FromBody] SaveProductCommand command)
+    {
+        var result = await _commandDispatcher.Run(command, HttpContext.RequestAborted);
+        return ResultToStatusCode(result);
+    }
 
-        private IActionResult ResultToStatusCode(Result result)
-        {
-            if (result.IsSuccess)
-                return NoContent();
-            
-            if(result.ErrorCode == ErrorCodes.NotFound)
-                return NotFound();
-            
-            return BadRequest(result.ErrorCode);
-        }
+    [HttpPut("{productId}")]
+    public async Task<IActionResult> UpdateProduct(int productId, [FromBody] SaveProductCommand command)
+    {
+        command.ProductId = productId;
+        var result = await _commandDispatcher.Run(command, HttpContext.RequestAborted);
+        return ResultToStatusCode(result);
+    }
+
+    private IActionResult ResultToStatusCode(Result result)
+    {
+        if (result.IsSuccess)
+            return NoContent();
+
+        if (result.ErrorCode == ErrorCodes.NotFound)
+            return NotFound();
+
+        return BadRequest(result.ErrorCode);
+    }
+
+    private IActionResult ResultToStatusCode<T>(Result<T> result)
+    {
+        if (result.IsSuccess)
+            return Ok(result.Value);
+        
+        if (result.ErrorCode == ErrorCodes.NotFound)
+            return NotFound();
+
+        return BadRequest(result.ErrorCode);
     }
 }
