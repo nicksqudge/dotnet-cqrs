@@ -38,6 +38,8 @@ namespace DotnetCQRS.Extensions.FluentAssertions
 
         protected override string Identifier => nameof(ResultAssertions<T>);
 
+        public T ResultValue => Subject.Value;
+
         public AndConstraint<ResultAssertions<T>> BeSuccess()
         {
             Subject.IsSuccess.Should().BeTrue();

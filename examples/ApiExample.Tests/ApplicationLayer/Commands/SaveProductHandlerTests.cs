@@ -11,7 +11,7 @@ namespace ApiExample.Tests.ApplicationLayer.Commands;
 
 public class SaveProductHandlerTests
 {
-    private readonly ExampleDbContext _context = InMemoryDbContext.Init();
+    private readonly ExampleDbContext _context = InMemoryDbContext.Init(nameof(SaveProductHandlerTests));
     private readonly SaveProductHandler _handler;
 
     public SaveProductHandlerTests()

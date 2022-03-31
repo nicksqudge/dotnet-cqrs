@@ -1,4 +1,6 @@
-﻿using ApiExample.ApplicationLayer.Commands.SaveProduct;
+﻿using ApiExample.ApplicationLayer.Commands.HideProduct;
+using ApiExample.ApplicationLayer.Commands.SaveProduct;
+using ApiExample.ApplicationLayer.Commands.ShowProduct;
 using ApiExample.ApplicationLayer.Queries.ProductList;
 using DotnetCQRS;
 using DotnetCQRS.Commands;
@@ -41,6 +43,26 @@ public class ProductController : ControllerBase
     {
         command.ProductId = productId;
         var result = await _commandDispatcher.Run(command, HttpContext.RequestAborted);
+        return ResultToStatusCode(result);
+    }
+
+    [HttpPut("{productId}/show")]
+    public async Task<IActionResult> ShowProduct(int productId)
+    {
+        var result = await _commandDispatcher.Run(new ShowProductCommand()
+        {
+            ProductId = productId
+        }, HttpContext.RequestAborted);
+        return ResultToStatusCode(result);
+    }
+
+    [HttpPut("{productId}/hide")]
+    public async Task<IActionResult> HideProduct(int productId)
+    {
+        var result = await _commandDispatcher.Run(new HideProductCommand()
+        {
+            ProductId = productId
+        }, HttpContext.RequestAborted);
         return ResultToStatusCode(result);
     }
 

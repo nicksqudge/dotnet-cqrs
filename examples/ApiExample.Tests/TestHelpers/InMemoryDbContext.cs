@@ -6,10 +6,10 @@ namespace ApiExample.Tests.TestHelpers;
 
 public class InMemoryDbContext
 {
-    public static ExampleDbContext Init()
+    public static ExampleDbContext Init(string name)
     {
         var options = new DbContextOptionsBuilder<ExampleDbContext>()
-            .UseInMemoryDatabase("ApiExample")
+            .UseInMemoryDatabase(name)
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
 
