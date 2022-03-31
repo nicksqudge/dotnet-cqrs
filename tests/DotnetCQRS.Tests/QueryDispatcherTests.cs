@@ -20,7 +20,7 @@ namespace DotnetCQRS.Tests
                 .BuildServiceProvider();
 
             var dispatcher = services.GetRequiredService<IQueryDispatcher>();
-            var result = await dispatcher.Run<QueryTest, QueryTestResult>(new QueryTest(), CancellationToken.None);
+            var result = await dispatcher.RunAsync<QueryTest, QueryTestResult>(new QueryTest(), CancellationToken.None);
             result.Should().BeSuccess()
                 .And.BeEquivalentTo(new QueryTestResult
                 {
@@ -39,7 +39,7 @@ namespace DotnetCQRS.Tests
 
             var queryDispatcher = services.GetRequiredService<IQueryDispatcher>();
             var result =
-                await queryDispatcher.Run<ExampleQuery, ExampleQueryResult>(new ExampleQuery(), CancellationToken.None);
+                await queryDispatcher.RunAsync<ExampleQuery, ExampleQueryResult>(new ExampleQuery(), CancellationToken.None);
             result.Should().BeSuccess();
         }
 

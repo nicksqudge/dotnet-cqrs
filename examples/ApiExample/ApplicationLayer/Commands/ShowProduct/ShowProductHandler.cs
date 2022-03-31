@@ -1,6 +1,7 @@
 ﻿using ApiExample.DataAccessLayer;
 using DotnetCQRS;
 using DotnetCQRS.Commands;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiExample.ApplicationLayer.Commands.ShowProduct
 {
@@ -15,7 +16,7 @@ namespace ApiExample.ApplicationLayer.Commands.ShowProduct
 
         public async Task<Result> HandleAsync(ShowProductCommand command, CancellationToken cancellationToken)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == command.ProductId);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == command.ProductId, cancellationToken);
             if (product == null)
                 return Result.Failure(ErrorCodes.NotFound);
 

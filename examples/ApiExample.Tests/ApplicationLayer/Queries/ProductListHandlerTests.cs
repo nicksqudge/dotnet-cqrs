@@ -3,10 +3,6 @@ using ApiExample.DataAccessLayer;
 using ApiExample.Tests.TestHelpers;
 using DotnetCQRS.Extensions.FluentAssertions;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -44,7 +40,12 @@ namespace ApiExample.Tests.ApplicationLayer.Queries
         [Fact]
         public async Task ShowOnlyActive()
         {
+            // Arrange
+
+            // Act
             var result = await _handler.HandleAsync(new ProductListQuery(), CancellationToken.None);
+
+            // Assert
             result.Should().BeSuccess()
                 .And.ResultValue.Products.Should().ContainEquivalentOf(new ProductListResult.Product()
                 {
@@ -58,11 +59,15 @@ namespace ApiExample.Tests.ApplicationLayer.Queries
         [Fact]
         public async Task ShowAll()
         {
+            // Arrange
+
+            // Act
             var result = await _handler.HandleAsync(new ProductListQuery()
             {
                 ShowOnlyActive = false
             }, CancellationToken.None);
 
+            // Assert
             result.Should().BeSuccess()
                 .And.ResultValue.Products.Should()
                 .ContainEquivalentOf(new ProductListResult.Product()

@@ -22,7 +22,7 @@ namespace DotnetCQRS.Tests
                 .BuildServiceProvider();
 
             var commandDispatcher = services.GetRequiredService<ICommandDispatcher>();
-            var result = await commandDispatcher.Run(new CommandTest(), CancellationToken.None);
+            var result = await commandDispatcher.RunAsync(new CommandTest(), CancellationToken.None);
             result.Should().BeFailure()
                 .And.HaveErrorCode("CommandTestRan");
         }
@@ -36,7 +36,7 @@ namespace DotnetCQRS.Tests
                 .Build();
 
             var commandDispatcher = container.Resolve<ICommandDispatcher>();
-            var result = await commandDispatcher.Run(new CommandTest(), CancellationToken.None);
+            var result = await commandDispatcher.RunAsync(new CommandTest(), CancellationToken.None);
             result.Should().BeFailure()
                 .And.HaveErrorCode("CommandTestRan");
         }
@@ -51,7 +51,7 @@ namespace DotnetCQRS.Tests
                 .BuildServiceProvider();
 
             var commandDispatcher = services.GetRequiredService<ICommandDispatcher>();
-            var result = await commandDispatcher.Run(new ExampleCommand(), CancellationToken.None);
+            var result = await commandDispatcher.RunAsync(new ExampleCommand(), CancellationToken.None);
             result.Should().BeSuccess();
         }
 
@@ -64,7 +64,7 @@ namespace DotnetCQRS.Tests
                 .Build();
 
             var commandDispatcher = container.Resolve<ICommandDispatcher>();
-            var result = await commandDispatcher.Run(new ExampleCommand(), CancellationToken.None);
+            var result = await commandDispatcher.RunAsync(new ExampleCommand(), CancellationToken.None);
             result.Should().BeSuccess();
         }
 

@@ -8,7 +8,7 @@ namespace DotnetCQRS.Commands
     /// </summary>
     public interface ICommandDispatcher
     {
-        Task<Result> Run<T>(T command, CancellationToken cancellationToken)
+        Task<Result> RunAsync<T>(T command, CancellationToken cancellationToken)
             where T : class, ICommand;
     }
 }

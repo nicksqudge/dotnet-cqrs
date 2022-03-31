@@ -13,7 +13,7 @@ namespace DotnetCQRS.Commands
             _handlerFactory = handlerFactory;
         }
 
-        public Task<Result> Run<T>(T command, CancellationToken cancellationToken)
+        public Task<Result> RunAsync<T>(T command, CancellationToken cancellationToken)
             where T : class, ICommand
         {
             if (command == null) throw new ArgumentNullException(nameof(command));

@@ -13,7 +13,7 @@ namespace DotnetCQRS.Queries
             _handlerFactory = handlerFactory;
         }
 
-        public Task<Result<TResult>> Run<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
+        public Task<Result<TResult>> RunAsync<TQuery, TResult>(TQuery query, CancellationToken cancellationToken)
             where TQuery : class, IQuery<TResult>
         {
             if (query == null) throw new ArgumentNullException(nameof(query));

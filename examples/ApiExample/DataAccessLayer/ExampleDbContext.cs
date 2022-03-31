@@ -9,4 +9,5 @@ public class ExampleDbContext : DbContext
     }
 
     public DbSet<ProductEntity> Products { get; set; }
+    public DbSet<CartItemEntity> CartItems { get; set; }
 }
