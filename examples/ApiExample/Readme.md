@@ -14,6 +14,7 @@ buy things. It is all done as a REST API to keep it simple.
 ## Other Notes
 
 - **Validation**: I am using FluentValidation for my validators.
+- [Postman Collection](https://www.postman.com/nicksqudge/workspace/dotnet-cqrs-api-example/overview)
 
 ## Need Other examples?
 

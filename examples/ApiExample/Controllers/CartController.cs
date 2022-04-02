@@ -23,6 +23,7 @@ namespace ApiExample.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToCart([FromBody] AddToCartCommand command)
         {
+            command.UserId = GetUserId();
             var result = await _commandDispatcher.RunAsync(command, HttpContext.RequestAborted);
             return ResultToStatusCode(result);
         }

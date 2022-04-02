@@ -1,6 +1,7 @@
 using ApiExample.ApplicationLayer.Commands.SaveProduct;
 using ApiExample.DataAccessLayer;
 using DotnetCQRS.Extensions.Microsoft.DependencyInjection;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,8 @@ builder.Services.AddControllers();
 builder.Services
     .AddDotnetCqrs()
     .AddHandlersFromAssembly<SaveProductCommand>()
-    .AddDbContext<ExampleDbContext>(options => options.UseSqlite("Data Source=CQRSExample.db"));
+    .AddDbContext<ExampleDbContext>(options => options.UseSqlite("Data Source=CQRSExample.db"))
+    .AddValidatorsFromAssemblyContaining<SaveProductCommand>();
 
 var app = builder.Build();
 
