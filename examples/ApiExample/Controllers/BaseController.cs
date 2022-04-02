@@ -26,5 +26,12 @@ namespace ApiExample.Controllers
 
             return BadRequest(result.ErrorCode);
         }
+
+        protected int GetUserId()
+        {
+            // This logic would be handled by your auth provider
+            // For now I am just returning 1 for ease of an example
+            return 1;
+        }
     }
 }
