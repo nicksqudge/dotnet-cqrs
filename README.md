@@ -14,7 +14,7 @@ or using the .Net core command line
 
 ## Usage
 
-To define a Command or Query just create a class and inherit from either ICommand or IQuery. For Queries, you will need
+To define a Command or Query, create a class and inherit from either ICommand or IQuery. For Queries, you will need
 to define a return result.
 
 ```csharp
@@ -104,16 +104,16 @@ else
 
 ### What is CQRS?
 
-CQRS is known as Command and Query Responsibility Segregation, it is a pattern for structuring applications. For more
-information on the pattern
+CQRS (Command and Query Responsibility Segregation) is a pattern for structuring applications. For more
+information on this pattern
 check [the Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 
-Unlike the above implementation, this one is used for doing One Command or Query Handler per file rather than being able
+Unlike the above implementation, this one is used for doing one Command or Query Handler per file rather than being able
 to do many in a single file.
 
 For more information check out the [basics](docs/Basics.md) or the [ApiExample](examples/ApiExample/Readme.md)
 
-### What about Dependency Injection
+### What About Dependency Injection?
 
 Check the /src folder to find two Dependency Injection implementations for the Microsoft.Extensions.DependencyInjection
 and Autofac libraries. If you want other implementations let me know through the Issues tab in Github.
