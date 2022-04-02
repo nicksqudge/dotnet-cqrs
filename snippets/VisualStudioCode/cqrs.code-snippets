@@ -1,0 +1,42 @@
+{
+  "CQRS Query": {
+    "prefix": "query",
+    "body": [
+      "public class ${QueryName}Query : IQuery<${QueryName}Result>",
+      "{",
+      "}",
+      "",
+      "public class ${QueryName}Result",
+      "{",
+      "",
+      "}",
+      "",
+      "public class ${QueryName}Handler: IQueryHandler<${QueryName}Query, ${QueryName}Result>",
+      "{",
+      "    public Task<Result<${QueryName}Result>> HandleAsync(${QueryName}Query query, CancellationToken cancellationToken)",
+      "    {",
+      "        throw new NotImplementedException();",
+      "    }",
+      "}"
+    ],
+    "description": "CQRS Query"
+  },
+  "CQRS Command": {
+    "prefix": "command",
+    "body": [
+      "public class ${CommandName}Command : ICommand",
+      "{",
+      "}",
+      "",
+      "",
+      "public class ${CommandName}Handler: ICommandHandler<${CommandName}Command>",
+      "{",
+      "    public Task<Result> HandleAsync(${CommandName}Command command, CancellationToken cancellationToken)",
+      "    {",
+      "        throw new NotImplementedException();",
+      "    }",
+      "}"
+    ],
+    "description": "CQRS Command"
+  }
+}

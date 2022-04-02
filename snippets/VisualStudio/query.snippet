@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>CQRS Query</Title>
+            <Shortcut>query</Shortcut>
+            <Description>Query, Result and Handler</Description>
+            <Author>DotnetCQRS</Author>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+	public class $name$Query : IQuery<$name$Result>
+    {
+    }
+
+    public class $name$Result
+    {
+
+    }
+
+    public class $name$Handler: IQueryHandler<$name$Query, $name$Result>
+    {
+        public Task<Result<$name$Result>> HandleAsync($name$Query query, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+    }]]>
+            </Code>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Query Name</ToolTip>
+                    <Default>QueryName</Default>
+                </Literal>
+            </Declarations>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

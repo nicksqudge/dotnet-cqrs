@@ -31,7 +31,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiExample.Tests", "examples\ApiExample.Tests\ApiExample.Tests.csproj", "{F280A5FF-E7D9-4297-A533-035ACFA73C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiExample.Tests", "examples\ApiExample.Tests\ApiExample.Tests.csproj", "{F280A5FF-E7D9-4297-A533-035ACFA73C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "snippets", "snippets", "{2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudio", "VisualStudio", "{67CA4FD4-D5CB-4D70-985E-856D5FB16C7D}"
+	ProjectSection(SolutionItems) = preProject
+		snippets\VisualStudio\command.snippet = snippets\VisualStudio\command.snippet
+		snippets\VisualStudio\query.snippet = snippets\VisualStudio\query.snippet
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudioCode", "VisualStudioCode", "{D68E2DDF-F81D-47E8-937B-73B6C5AF41D4}"
+	ProjectSection(SolutionItems) = preProject
+		snippets\VisualStudioCode\cqrs.code-snippets = snippets\VisualStudioCode\cqrs.code-snippets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +92,8 @@ Global
 		{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
 		{80998D21-DBB5-4E7B-82EB-42117D7B21E7} = {E59F6312-14B9-4831-84F1-16A00F429E4A}
 		{F280A5FF-E7D9-4297-A533-035ACFA73C59} = {E59F6312-14B9-4831-84F1-16A00F429E4A}
+		{67CA4FD4-D5CB-4D70-985E-856D5FB16C7D} = {2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}
+		{D68E2DDF-F81D-47E8-937B-73B6C5AF41D4} = {2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73E0FB9F-4B91-427B-89D0-99D8438BC11F}
