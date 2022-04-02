@@ -13,18 +13,18 @@
         <PackageTags>dotnet cqrs command query dependency injection autofac</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	    <AssemblyVersion>1.1</AssemblyVersion>
+        <FileVersion>1.1</FileVersion>
+        <Version>1.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt"/>
+        <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0"/>
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="DotnetCQRS" Version="1.0.0" />
     </ItemGroup>
 
 </Project>

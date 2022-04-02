@@ -13,18 +13,18 @@
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<AssemblyVersion>1.1</AssemblyVersion>
+		<FileVersion>1.1</FileVersion>
+		<Version>1.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt"/>
+        <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.5.1"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj"/>
+        <PackageReference Include="DotnetCQRS" Version="1.0.0" />
+        <PackageReference Include="FluentAssertions" Version="6.5.1" />
     </ItemGroup>
 
 </Project>
