@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>CQRS Command</Title>
+            <Shortcut>command</Shortcut>
+            <Description>Command and Handler</Description>
+            <Author>DotnetCQRS</Author>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+	public class $name$Command : ICommand
+    {
+    }
+
+    public class $name$Handler : ICommandHandler<$name$Command>
+    {
+        public Task<Result> HandleAsync($name$Command command, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+    }]]>
+            </Code>
+            <Declarations>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Command Name</ToolTip>
+                    <Default>CommandName</Default>
+                </Literal>
+            </Declarations>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

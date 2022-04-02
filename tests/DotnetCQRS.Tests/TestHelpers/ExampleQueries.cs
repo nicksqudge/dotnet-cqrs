@@ -6,7 +6,6 @@ namespace DotnetCQRS.Tests.TestHelpers
 {
     public class ExampleQuery : IQuery<ExampleQueryResult>
     {
-        
     }
 
     public class ExampleQueryResult
@@ -16,9 +15,10 @@ namespace DotnetCQRS.Tests.TestHelpers
 
     public class ExampleQueryHandler : IQueryHandler<ExampleQuery, ExampleQueryResult>
     {
-        public async Task<Result<ExampleQueryResult>> HandleAsync(ExampleQuery query, CancellationToken cancellationToken)
+        public async Task<Result<ExampleQueryResult>> HandleAsync(ExampleQuery query,
+            CancellationToken cancellationToken)
         {
-            return Result.Success(new ExampleQueryResult()
+            return Result.Success(new ExampleQueryResult
             {
                 Output = nameof(ExampleQueryHandler)
             });

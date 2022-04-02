@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DotnetCQRS
+﻿namespace DotnetCQRS
 {
     public class Result
     {
+        public Result(bool isSuccess, string errorCode = "")
+        {
+            IsSuccess = isSuccess;
+            ErrorCode = errorCode;
+        }
+
+        public bool IsSuccess { get; set; }
+        public bool IsFailure => !IsSuccess;
+        public string ErrorCode { get; set; } = string.Empty;
+
         public static Result Success()
         {
             return new Result(true);
@@ -16,39 +22,29 @@ namespace DotnetCQRS
             return new Result<T>(true, value);
         }
 
-        public static Result Failure(string errorCode="UNKNOWN")
+        public static Result Failure(string errorCode = "UNKNOWN")
         {
             return new Result(false, errorCode);
         }
-        
-        public static Result<T> Failure<T>(string errorCode="UNKNOWN")
+
+        public static Result<T> Failure<T>(string errorCode = "UNKNOWN")
         {
             return new Result<T>(false, errorCode);
-        }
-
-        public bool IsSuccess { get; set; }
-        public bool IsFailure => !IsSuccess;
-        public string ErrorCode { get; set; } = string.Empty;
-
-        public Result(bool isSuccess, string errorCode="")
-        {
-            IsSuccess = isSuccess;
-            ErrorCode = errorCode;
         }
     }
 
     public class Result<T> : Result
     {
-        public T Value { get; set; }
-
-        public Result(bool isSuccess, string errorCode="") : base(isSuccess, errorCode)
+        public Result(bool isSuccess, string errorCode = "") : base(isSuccess, errorCode)
         {
-            Value = default(T);
+            Value = default;
         }
 
         public Result(bool isSuccess, T value, string errorCode = "") : base(isSuccess, errorCode)
         {
             Value = value;
         }
+
+        public T Value { get; set; }
     }
 }

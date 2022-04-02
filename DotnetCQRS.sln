@@ -12,12 +12,39 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS.Tests", "tests\DotnetCQRS.Tests\DotnetCQRS.Tests.csproj", "{DA7E2CDC-F6BA-4F8A-BA51-8592E71184BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{0250EAF3-5DAB-40A4-B48E-EBF492E986C9}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Basics.md = docs\Basics.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS.MicrosoftDI", "src\DotnetCQRS.MicrosoftDI\DotnetCQRS.MicrosoftDI.csproj", "{87DFF101-7A58-4395-80D8-D5285D1D6E43}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS.AutofacDI", "src\DotnetCQRS.AutofacDI\DotnetCQRS.AutofacDI.csproj", "{9577B488-F77E-48AA-996D-00C5EB5EBF17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCQRS.FluentAssertions", "src\DotnetCQRS.FluentAssertions\DotnetCQRS.FluentAssertions.csproj", "{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{E59F6312-14B9-4831-84F1-16A00F429E4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiExample", "examples\ApiExample\ApiExample.csproj", "{80998D21-DBB5-4E7B-82EB-42117D7B21E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C848D60A-93D0-4C2F-BB6D-43CD28019E03}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiExample.Tests", "examples\ApiExample.Tests\ApiExample.Tests.csproj", "{F280A5FF-E7D9-4297-A533-035ACFA73C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "snippets", "snippets", "{2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudio", "VisualStudio", "{67CA4FD4-D5CB-4D70-985E-856D5FB16C7D}"
+	ProjectSection(SolutionItems) = preProject
+		snippets\VisualStudio\command.snippet = snippets\VisualStudio\command.snippet
+		snippets\VisualStudio\query.snippet = snippets\VisualStudio\query.snippet
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudioCode", "VisualStudioCode", "{D68E2DDF-F81D-47E8-937B-73B6C5AF41D4}"
+	ProjectSection(SolutionItems) = preProject
+		snippets\VisualStudioCode\cqrs.code-snippets = snippets\VisualStudioCode\cqrs.code-snippets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +72,14 @@ Global
 		{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80998D21-DBB5-4E7B-82EB-42117D7B21E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80998D21-DBB5-4E7B-82EB-42117D7B21E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80998D21-DBB5-4E7B-82EB-42117D7B21E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80998D21-DBB5-4E7B-82EB-42117D7B21E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F280A5FF-E7D9-4297-A533-035ACFA73C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F280A5FF-E7D9-4297-A533-035ACFA73C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F280A5FF-E7D9-4297-A533-035ACFA73C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F280A5FF-E7D9-4297-A533-035ACFA73C59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +90,10 @@ Global
 		{87DFF101-7A58-4395-80D8-D5285D1D6E43} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
 		{9577B488-F77E-48AA-996D-00C5EB5EBF17} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
 		{1C9A1FE3-E142-4E25-9D69-38245BF4EBB1} = {28BCB1E3-6348-4A05-ABE9-229FC56CC3F2}
+		{80998D21-DBB5-4E7B-82EB-42117D7B21E7} = {E59F6312-14B9-4831-84F1-16A00F429E4A}
+		{F280A5FF-E7D9-4297-A533-035ACFA73C59} = {E59F6312-14B9-4831-84F1-16A00F429E4A}
+		{67CA4FD4-D5CB-4D70-985E-856D5FB16C7D} = {2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}
+		{D68E2DDF-F81D-47E8-937B-73B6C5AF41D4} = {2BCA9F6F-D54F-4FFC-9FC8-69B3432B9314}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {73E0FB9F-4B91-427B-89D0-99D8438BC11F}

@@ -1,30 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <AssemblyName>DotnetCQRS.Extensions.Autofac.DependencyInjection</AssemblyName>
-    <RootNamespace>DotnetCQRS.Extensions.Autofac.DependencyInjection</RootNamespace>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Company>nick.squdge</Company>
-    <Description>Dependency Injection for .Net CQRS for Autofac</Description>
-    <Copyright>Copyright ©2022 Nick Browne</Copyright>
-    <PackageProjectUrl>https://github.com/nicksqudge/dotnet-cqrs</PackageProjectUrl>
-    <PackageTags>dotnet cqrs command query dependency injection autofac</PackageTags>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AssemblyName>DotnetCQRS.Extensions.Autofac.DependencyInjection</AssemblyName>
+        <RootNamespace>DotnetCQRS.Extensions.Autofac.DependencyInjection</RootNamespace>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Company>nick.squdge</Company>
+        <Description>Dependency Injection for .Net CQRS for Autofac</Description>
+        <Copyright>Copyright ©2022 Nick Browne</Copyright>
+        <PackageProjectUrl>https://github.com/nicksqudge/dotnet-cqrs</PackageProjectUrl>
+        <PackageTags>dotnet cqrs command query dependency injection autofac</PackageTags>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	    <AssemblyVersion>1.1</AssemblyVersion>
+        <FileVersion>1.1</FileVersion>
+        <Version>1.1</Version>
+    </PropertyGroup>
 
     <ItemGroup>
-	    <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+        <None Update="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
     </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DotnetCQRS\DotnetCQRS.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.3.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="6.3.0" />
+        <PackageReference Include="DotnetCQRS" Version="1.0.0" />
+    </ItemGroup>
 
 </Project>
