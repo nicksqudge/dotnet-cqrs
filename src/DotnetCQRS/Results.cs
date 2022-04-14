@@ -8,9 +8,9 @@
             ErrorCode = errorCode;
         }
 
-        public bool IsSuccess { get; set; }
+        public bool IsSuccess { get; private set; }
         public bool IsFailure => !IsSuccess;
-        public string ErrorCode { get; set; } = string.Empty;
+        public string ErrorCode { get; private set; } = string.Empty;
 
         public static Result Success()
         {
@@ -22,6 +22,11 @@
             return new Result<T>(true, value);
         }
 
+        public static Result<T> EmptySuccess<T>()
+        {
+            return new Result<T>(true);
+        }
+        
         public static Result Failure(string errorCode = "UNKNOWN")
         {
             return new Result(false, errorCode);
@@ -38,13 +43,17 @@
         public Result(bool isSuccess, string errorCode = "") : base(isSuccess, errorCode)
         {
             Value = default;
+            HasValue = false;
         }
 
         public Result(bool isSuccess, T value, string errorCode = "") : base(isSuccess, errorCode)
         {
             Value = value;
+            HasValue = true;
         }
 
-        public T Value { get; set; }
+        public T Value { get; private set; }
+        
+        public bool HasValue { get; private set; }
     }
 }

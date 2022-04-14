@@ -117,3 +117,13 @@ For more information check out the [basics](docs/Basics.md) or the [ApiExample](
 
 Check the /src folder to find two Dependency Injection implementations for the Microsoft.Extensions.DependencyInjection
 and Autofac libraries. If you want other implementations let me know through the Issues tab in Github.
+
+## Version History
+
+### Version 1.2
+ - Added in EmptySuccess as a possible Result static method
+ - Added HasValue boolean to Result<T>
+ - Made properties of the Result and Result<T> private set
+
+### Version 1.1
+ - Made naming of methods more consistent

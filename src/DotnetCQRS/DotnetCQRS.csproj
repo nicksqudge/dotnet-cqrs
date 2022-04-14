@@ -10,9 +10,10 @@
         <PackageTags>dotnet cqrs command query</PackageTags>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-        <AssemblyVersion>1.1</AssemblyVersion>
-        <FileVersion>1.1</FileVersion>
-        <Version>1.1</Version>
+        <AssemblyVersion>1.2</AssemblyVersion>
+        <FileVersion>1.2</FileVersion>
+        <Version>1.2</Version>
+        <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
